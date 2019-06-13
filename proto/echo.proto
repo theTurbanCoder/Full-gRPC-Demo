@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package fullDuplexTest;
+
+
+message Timestamp {
+    int64 seconds = 1;
+    int32 nanos = 2;
+  }
+
+
+
+
+
+message EchoRequest {
+
+    string message = 1;
+
+}
+
+message EchoResponse {
+
+    string message = 1;
+}
+
+
+message FullDuplexRequest {
+
+    string name = 1;
+    bytes chunk = 2;
+
+    Timestamp generatedTime = 3;
+
+    string TimeOfDay = 4;
+    
+}
+
+message FullDuplexResponse {
+
+    string name = 1;
+
+}
+
+
+
+service TestDuplexService {
+
+    rpc Echo(EchoRequest) returns (EchoResponse);
+    
+    rpc Bid(stream FullDuplexRequest) returns (stream FullDuplexResponse);
+
+    rpc send(FullDuplexRequest) returns (FullDuplexResponse);
+
+}

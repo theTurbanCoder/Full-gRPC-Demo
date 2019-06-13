@@ -1,87 +1,78 @@
-let touchstartX = 0;
-let touchstartY = 0;
-let touchendX = 0;
-let touchendY = 0;
+(function($){
+
+    $.fn.swipeDetector = function(options){
+        var swipeState = 0;
+        var StartX = 0;
+        var StartY = 0;
+
+        var pixelOffsetX = 0;
+        var pixelOffsetY = 0;
+
+        var swipeTarget = this;
+        var defaultSettings = {
+            swipeThreshold: 70,
+            useOnlyTouch: false
+        };
+    
+    
+        (function init(){
+
+            options = $.extend(defaultSettings,options)
+            swipeTarget.on("mousedown touchstart", swipeStart);
+            $('html').on("mouseup touchend", swipeEnd);
+            $('html').on("mousemove touchmove", swiping);
+        })();
 
 
+        function swipeStart(event) {
 
-window.onload = function(){
+            console.log(event);
 
-    let touchstartX = 0;
-        let touchstartY = 0;
-        let touchendX = 0;
-        let touchendY = 0;
-
-        const gestureZone = document.getElementById('gestureZone');
-
-        gestureZone.addEventListener('touchstart', function(event) {
-            touchstartX = event.changedTouches[0].screenX;
-            touchstartY = event.changedTouches[0].screenY;
-        }, false);
-
-        gestureZone.addEventListener('touchend', function(event) {
-            touchendX = event.changedTouches[0].screenX;
-            touchendY = event.changedTouches[0].screenY;
-            handleGesture();
-        }, false); 
-
-        function handleGesture() {
-            if (touchendX < touchstartX) {
-                console.log('Swiped left');
-            }
-            
-            if (touchendX > touchstartX) {
-                console.log('Swiped right');
-            }
-            
-            if (touchendY < touchstartY) {
-                console.log('Swiped up');
-            }
-            
-            if (touchendY > touchstartY) {
-                console.log('Swiped down');
-            }
-            
-            if (touchendY === touchstartY) {
-                console.log('Tap');
-            }
         }
 
-}
+    
+    }
 
 
 
 
-// var sock = new SockJS('http://localhost:8080/echo');
+
+
+})(jQuery);
+
+
+
+
+var sock = new SockJS('http://localhost:8080/echo');
  
-// $(document).ready(function(){
+$(document).ready(function(){
 
-//     sock.onopen = function() {
-//         console.log('open');
-//         sock.send('test');
+    sock.onopen = function() {
+        console.log('open');
+        sock.send('test');
         
-//     };
+    };
    
-//     sock.onmessage = function(e) {
+    sock.onmessage = function(e) {
  
 
-//         let incomingData = JSON.parse(e.data)
+        let incomingData = JSON.parse(e.data)
     
-//         var chckS = Buffer.from(incomingData.imageData).toString('base64');
+        var chckS = Buffer.from(incomingData.imageData).toString('base64');
     
-//         document.getElementById("ItemPreview").setAttribute('src','data:image/jpg;base64,'+chckS);
+        document.getElementById("ItemPreview").setAttribute('src','data:image/jpg;base64,'+chckS);
        
-//      };
+     };
 
-// })
-
-
+})
 
 
 
 
-//  sock.onclose = function() {
-//     //  console.log('close');
-//  };
+
+
+ sock.onclose = function() {
+    //  console.log('close');
+ };
 
 

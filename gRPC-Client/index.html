@@ -6,22 +6,43 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <!-- <script src="../bower_components/chartist/dist/chartist.min.js"></script> -->
     <script src="../dist/main.js"></script>
-    <script>
-        
 
-    </script>
 
-   
+    <link rel="stylesheet" href="./test.css">
+    <!-- <link rel="stylesheet" href="../bower_components/chartist/dist/chartist.min.css" type="text/css"> -->
+    
+
 
 </head>
 <body>
-    <div id='incomingData'>
-        <img id="ItemPreview" src="" />
-    </div>
-    
-    <div id='gestureZone' style="width: 500px; height:500px; background-color:orangered"></div>
+
+    <main>
+        <div class="main_section">
+            <section>
+                    <div class="row">
+                            <div class="col-1-of-2">
+                                <div id="deviceWrapper" class="reflect">
+                                    <img id="phoneBody" draggable="false" class="noDrag" src="./phone-body.png" alt="phone-body" draggable="false" style="
+                                    width: 56%;
+                                    height: -4%;
+                                    left: 50%;">
+                                    <img id="bitmapdata" draggable="false" class="noDrag"  style="width: 42.5%;height: 78%;top: 9%;left: 7%; position: absolute;border:none;">
+                                    <div class="spotlight-shadow"></div>
+                                </div>
+                            </div>
+                            <div class="col-1-of-2">
+                                <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+                            </div>
+                        </div>
+            </section>
+        </div>
+    </main>
+
+
 </body>
 </html>

@@ -41,6 +41,11 @@ function test(call){
             conn.write(JSON.stringify({name:userLog.name,imageData:userLog.chunk}));
         });
 
+        conn.on('data',function(co){
+            console.log('Server Recieved',co);
+            call.write({name:co});
+        })
+
     });
 
 

@@ -113,7 +113,7 @@ def run():
         bidResponse = stub.Bid(generate_messages())
         
         for res in bidResponse:
-            print(res)
+            print("Server Sent",res)
             
     pass
 
